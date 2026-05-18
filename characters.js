@@ -2,58 +2,61 @@
 
 const characters = [
 
-{
-    name:"Jur Klopp",
+    {
 
-    subtitle:"Mejor amigo",
+        name: "Jur Klopp",
 
-    description:
-    "Una presencia extraña. Siempre parece observar más de lo que habla.",
+        subtitle: "Mejor amigo",
 
-    gems:7,
-    max:10,
+        hearts: 7,
 
-    image:"img/jur.png",
+        maxHearts: 10,
 
-    previewImage:"img/jur-preview.png",
+        image: "avatars/jur.png",
 
-    page:"personajes/jur.html"
-},
+        preview: "avatars/jur-preview.png",
 
-{
-    name:"Vivi Ornitier",
+        description:
+            "Jur mantiene una relación cercana y leal. A pesar de su carácter impredecible, es una de las pocas personas en las que existe una confianza genuina."
 
-    subtitle:"Confianza extraña",
+    },
 
-    description:
-    "Hay algo profundamente frágil y peligroso en él.",
+    {
 
-    gems:5,
-    max:10,
+        name: "Vivi Ornitier",
 
-    image:"img/vivi.png",
+        subtitle: "Confianza extraña",
 
-    previewImage:"img/vivi-preview.png",
+        hearts: 5,
 
-    page:"personajes/vivi.html"
-},
+        maxHearts: 10,
 
-{
-    name:"Ramsay",
+        image: "avatars/vivi.png",
 
-    subtitle:"Relación tensa",
+        preview: "avatars/vivi-preview.png",
 
-    description:
-    "La cicatriz en su rostro parece menos peligrosa que su mirada.",
+        description:
+            "Existe una conexión difícil de definir. La relación fluctúa entre curiosidad, protección mutua y una distancia emocional constante."
 
-    gems:2,
-    max:10,
+    },
 
-    image:"img/ramsay.png",
+    {
 
-    previewImage:"img/ramsay-preview.png",
+        name: "Ramsay",
 
-    page:"personajes/ramsay.html"
-}
+        subtitle: "Relación tensa",
+
+        hearts: 2,
+
+        maxHearts: 10,
+
+        image: "avatars/ramsay.png",
+
+        preview: "avatars/ramsay-preview.png",
+
+        description:
+            "La interacción con Ramsay está marcada por la desconfianza y la confrontación. Sin embargo, hay cierta comprensión silenciosa entre ambos."
+
+    }
 
 ];
