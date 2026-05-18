@@ -1,174 +1,383 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Relaciones</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
-    *{
-        box-sizing:border-box;
-        margin:0;
-        padding:0;
-        font-family:Verdana, sans-serif;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    body{
-        background:#d2a56d;
-        padding:40px;
-        color:#4b2e1d;
-    }
+body{
 
-    .panel{
-        max-width:900px;
-        margin:auto;
-        background:#f0d39c;
-        border:6px solid #9b6b3d;
-        border-radius:14px;
-        overflow:hidden;
-        box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    }
+    min-height:100vh;
+    overflow-x:hidden;
 
-    .title{
-        background:#c78d4e;
-        padding:20px;
-        font-size:28px;
-        font-weight:bold;
-        border-bottom:4px solid #9b6b3d;
-    }
+    background:
+    radial-gradient(circle at 20% 20%, rgba(120,60,255,0.25), transparent 25%),
+    radial-gradient(circle at 80% 30%, rgba(80,50,220,0.20), transparent 30%),
+    radial-gradient(circle at 50% 100%, rgba(160,60,255,0.15), transparent 40%),
+    linear-gradient(135deg,#05010f 0%,#110425 45%,#060111 100%);
 
-    .character{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:18px;
-        border-bottom:2px solid rgba(0,0,0,0.08);
-    }
+    color:#f1d08a;
 
-    .left{
-        display:flex;
-        align-items:center;
-        gap:16px;
-    }
+    font-family:'Cormorant Garamond', serif;
 
-    .avatar{
-        width:64px;
-        height:64px;
-        border-radius:8px;
-        object-fit:cover;
-        border:3px solid #8d5b31;
-        background:white;
-    }
+    padding:70px 60px;
 
-    .info h2{
-        font-size:24px;
-        margin-bottom:4px;
-    }
+    position:relative;
+}
 
-    .info p{
-        opacity:0.7;
-        font-size:14px;
-    }
+body::before{
 
-    .hearts{
-        display:flex;
-        gap:4px;
-        font-size:28px;
-    }
+    content:"";
+    position:fixed;
+    inset:0;
 
-    .heart.empty{
-        opacity:0.2;
+    background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(2px 2px at 70% 60%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 90% 20%, rgba(255,255,255,0.3), transparent);
+
+    opacity:0.5;
+    pointer-events:none;
+}
+
+.container{
+    max-width:1500px;
+    margin:auto;
+}
+
+.hero{
+
+    text-align:center;
+    margin-bottom:80px;
+
+    opacity:0;
+    transform:translateY(30px);
+
+    animation:fadeUp 1.2s forwards;
+}
+
+.top-line{
+
+    width:100%;
+    max-width:900px;
+    height:1px;
+
+    margin:auto auto 30px auto;
+
+    background:
+    linear-gradient(to right,
+    transparent,
+    rgba(214,171,95,0.8),
+    transparent);
+}
+
+.hero h1{
+
+    font-family:'Cinzel', serif;
+
+    font-size:82px;
+    letter-spacing:5px;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+}
+
+.hero p{
+
+    font-size:30px;
+    opacity:0.75;
+
+    font-style:italic;
+}
+
+.members{
+
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+}
+
+.member{
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:28px 34px;
+
+    border:1px solid rgba(214,171,95,0.35);
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(90deg,
+    rgba(17,7,40,0.95),
+    rgba(11,4,28,0.92));
+
+    overflow:hidden;
+
+    backdrop-filter:blur(6px);
+
+    transition:0.35s;
+
+    opacity:0;
+    transform:translateY(40px);
+
+    animation:appear 0.8s forwards;
+}
+
+.member:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#f0c676;
+
+    box-shadow:
+    0 0 30px rgba(140,80,255,0.18),
+    0 0 80px rgba(90,40,255,0.08);
+}
+
+.member::before{
+
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(circle at left,
+    rgba(100,60,255,0.15),
+    transparent 45%);
+
+    pointer-events:none;
+}
+
+.left{
+
+    display:flex;
+    align-items:center;
+    gap:30px;
+
+    min-width:450px;
+}
+
+.avatar{
+
+    width:110px;
+    height:110px;
+
+    border-radius:18px;
+
+    object-fit:cover;
+
+    border:1px solid rgba(214,171,95,0.6);
+
+    transition:0.3s;
+}
+
+.member:hover .avatar{
+    transform:scale(1.04);
+}
+
+.info h2{
+
+    font-family:'Cinzel', serif;
+
+    font-size:54px;
+    letter-spacing:2px;
+
+    margin-bottom:6px;
+}
+
+.info p{
+
+    font-size:34px;
+
+    opacity:0.7;
+
+    font-style:italic;
+}
+
+.separator{
+
+    width:1px;
+    height:90px;
+
+    background:
+    linear-gradient(to bottom,
+    transparent,
+    rgba(214,171,95,0.5),
+    transparent);
+
+    margin:0 40px;
+}
+
+.right{
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    flex:1;
+    justify-content:flex-end;
+}
+
+.gems{
+
+    display:flex;
+    gap:18px;
+
+    font-size:40px;
+}
+
+.gem{
+
+    color:#f2c96c;
+
+    text-shadow:
+    0 0 10px rgba(255,215,120,0.4);
+}
+
+.empty{
+    opacity:0.18;
+}
+
+.arrow{
+
+    font-size:52px;
+
+    color:#d6ab5f;
+
+    opacity:0.7;
+
+    margin-left:30px;
+
+    transition:0.25s;
+}
+
+.member:hover .arrow{
+
+    transform:translateX(8px);
+
+    opacity:1;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+@keyframes appear{
+
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
+}
+
+@keyframes fadeUp{
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
 
 </style>
 </head>
 <body>
 
-<div class="panel">
+<div class="container">
 
-    <div class="title">
-        Relaciones
-    </div>
+    <section class="hero">
 
-    <div id="characters"></div>
+        <div class="top-line"></div>
+
+        <h1>RELACIONES</h1>
+
+        <p>"Cum populo, cum armis, ad potestatem."</p>
+
+    </section>
+
+    <div class="members" id="members"></div>
 
 </div>
 
+<script src="characters.js"></script>
+
 <script>
 
-//////////////////////////////////////////////////////////
-// AQUI EDITAS TUS PERSONAJES
-//////////////////////////////////////////////////////////
+const container = document.getElementById("members");
 
-const characters = [
+characters.forEach((character,index)=>{
 
-    {
-        name: "Jur Klopp",
-        subtitle: "Mejor amigo",
-        hearts: 8,
-        maxHearts: 10,
-        image: "https://i.imgur.com/JYUB0m3.png"
-    },
+    let gemsHTML = "";
 
-    {
-        name: "Vivi Ornitier",
-        subtitle: "Confianza extraña",
-        hearts: 5,
-        maxHearts: 10,
-        image: "https://i.imgur.com/fY6XGJx.png"
-    },
+    for(let i=0;i<character.max;i++){
 
-    {
-        name: "Ramsay",
-        subtitle: "Relación tensa",
-        hearts: 2,
-        maxHearts: 10,
-        image: "https://i.imgur.com/8QfR8hG.png"
+        gemsHTML += i < character.gems
+        ? `<span class="gem">✦</span>`
+        : `<span class="gem empty">✦</span>`;
     }
 
-];
+    const div = document.createElement("a");
 
-//////////////////////////////////////////////////////////
-// NO TOCAR SI NO QUIERES MODIFICAR EL FUNCIONAMIENTO
-//////////////////////////////////////////////////////////
+    div.href = character.page;
 
-const container = document.getElementById("characters");
+    div.className = "member";
 
-characters.forEach(character => {
+    div.style.animationDelay = `${index * 0.2}s`;
 
-    const row = document.createElement("div");
-    row.className = "character";
+    div.innerHTML = `
 
-    let heartsHTML = "";
-
-    for(let i = 0; i < character.maxHearts; i++){
-
-        if(i < character.hearts){
-            heartsHTML += `<span>❤️</span>`;
-        }else{
-            heartsHTML += `<span class="heart empty">❤️</span>`;
-        }
-    }
-
-    row.innerHTML = `
         <div class="left">
 
             <img class="avatar" src="${character.image}">
 
             <div class="info">
+
                 <h2>${character.name}</h2>
+
                 <p>${character.subtitle}</p>
+
             </div>
 
         </div>
 
-        <div class="hearts">
-            ${heartsHTML}
+        <div class="right">
+
+            <div class="separator"></div>
+
+            <div class="gems">
+                ${gemsHTML}
+            </div>
+
+            <div class="arrow">
+                ›
+            </div>
+
         </div>
+
     `;
 
-    container.appendChild(row);
+    container.appendChild(div);
 
 });
 
