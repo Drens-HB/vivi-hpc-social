@@ -119,8 +119,8 @@ header p{
 
 .avatar{
 
-    width:64px;
-    height:64px;
+    width:72px;
+    height:72px;
 
     border-radius:12px;
 
@@ -131,12 +131,16 @@ header p{
     background:
         linear-gradient(145deg,#2a1247,#140021);
 
+    box-shadow:
+        0 0 18px rgba(120,60,255,0.08);
+
     flex-shrink:0;
 }
 
 .info{
-    min-width:280px;
+    min-width:240px;
 }
+
 
 .character-name{
 
@@ -177,14 +181,21 @@ header p{
 }
 
 .right{
+
     display:flex;
     align-items:center;
-    gap:28px;
+    gap:22px;
+    margin-left:auto;
+    padding-left:40px;
 }
 
-.hearts{
-    display:flex;
-    gap:8px;
+.heart{
+
+    font-size:1.8rem;
+
+    color:#2b1835;
+
+    opacity:0.45;
 }
 
 .heart{
@@ -194,9 +205,22 @@ header p{
     color:#3b2446;
 }
 
+.hearts{
+
+    display:flex;
+
+    gap:4px;
+
+    min-width:260px;
+
+    justify-content:center;
+}
+
 .heart.filled{
 
     color:#ffd86f;
+
+    opacity:1;
 
     text-shadow:
         0 0 10px rgba(255,216,111,0.45);
@@ -338,11 +362,10 @@ characters.forEach(character => {
 
         <div class="left">
 
-            <img
-                class="avatar"
-                src="${character.image}"
-                onerror="this.style.display='none'"
-            >
+<img
+    class="avatar"
+    src="${character.image}"
+>
 
             <div class="info">
 
