@@ -222,6 +222,49 @@ header p{
     color:#ffe4aa;
 }
 
+.pagination{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:14px;
+
+    margin-top:30px;
+}
+
+.pagination button{
+
+    padding:10px 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(35,10,60,0.95),
+            rgba(12,0,25,0.95)
+        );
+
+    border:1px solid rgba(255,215,120,0.25);
+
+    color:#e7d1a2;
+
+    font-family:'Cinzel', serif;
+
+    cursor:pointer;
+
+    border-radius:10px;
+
+    transition:0.2s;
+}
+
+.pagination button:hover{
+
+    border-color:rgba(255,215,120,0.5);
+
+    box-shadow:
+        0 0 14px rgba(163,84,255,0.12);
+}
+
 .popup{
 
     position:absolute;
@@ -309,9 +352,24 @@ header p{
 
 <div class="characters" id="characters"></div>
 
+<div class="pagination">
+
+    <button onclick="prevPage()">
+        ← Anterior
+    </button>
+
+    <button onclick="nextPage()">
+        Siguiente →
+    </button>
+
+</div>
+
 </div>
 
 <script>
+
+const perPage = 6;
+let currentPage = 1;
 
 const characters = [
 
@@ -340,7 +398,7 @@ const characters = [
         image: "https://i.imgur.com/kDrXWPV.png",
         preview: "https://i.imgur.com/6V6TBvQ.png",
         description:
-            "La interacción con Ramsay está marcada por la desconfianza y la confrontación. Sin embargo, hay cierta comprensión silenciosa entre ambos."
+            "Su primo más cercano. Son de la misma casa y pasan mucho tiempo del día juntos. Es su compañero de aventuras y se apunta a un bombardeo siempre. lo malo es que solo tiene un ojo."
     },
                 {
 
@@ -389,89 +447,163 @@ const characters = [
             "Buen rival de Vivi."
     },
 
+        {
+
+        name: "Galatea de Thalassa",
+        subtitle: "Amiga de Hufflepuff",
+        hearts: 4,
+        maxHearts: 10,
+        image: "https://i.imgur.com/cHSvm23.png",
+        preview: "https://i.imgur.com/JQi0n4a.jpeg",
+        description:
+            "Amiga de Hufflepuff. Siente que es buena persona. Le hizo una carta muy chula."
+    },
+
+        {
+
+        name: "Jude Bellingham",
+        subtitle: "Amigo de Hufflepuff",
+        hearts: 3,
+        maxHearts: 10,
+        image: "https://i.imgur.com/MDYMEDy.png",
+        preview: "https://i.imgur.com/jAvVvZW.png",
+        description:
+            "Compañero de Hufflepuff. Suele entrenar con él para mejorar en el ámbito de los duelos."
+    },
+
+       {
+
+        name: "Elizabeth S.",
+        subtitle: "Compañera de Ravenclaw",
+        hearts: 3,
+        maxHearts: 10,
+        image: "https://i.imgur.com/wnpo0Bz.png",
+        preview: "https://i.imgur.com/g1aWXQK.png",
+        description:
+            "Compañera de Ravenclaw."
+    },
+
 
 
 ];
 
 const container = document.getElementById("characters");
 
-characters.forEach(character => {
+function renderCharacters(){
 
-    const card = document.createElement("div");
-    card.className = "character-card";
+    container.innerHTML = "";
 
-    let heartsHTML = "";
+    const sortedCharacters = [...characters]
 
-    for(let i = 0; i < character.maxHearts; i++){
+    .sort((a,b)=>b.hearts-a.hearts);
 
-        heartsHTML += `
-            <span class="heart ${i < character.hearts ? 'filled' : ''}">
-                ✦
-            </span>
+    const start = (currentPage - 1) * perPage;
+    const end = start + perPage;
+
+    const visibleCharacters = sortedCharacters.slice(start,end);
+
+    visibleCharacters.forEach(character => {
+
+        const card = document.createElement("div");
+        card.className = "character-card";
+
+        let heartsHTML = "";
+
+        for(let i = 0; i < character.maxHearts; i++){
+
+            heartsHTML += `
+                <span class="heart ${i < character.hearts ? 'filled' : ''}">
+                    ✦
+                </span>
+            `;
+        }
+
+        card.innerHTML = `
+
+            <div class="left">
+
+                <img
+                    class="avatar"
+                    src="${character.image}"
+                >
+
+                <div class="info">
+
+                    <div class="character-name">
+                        ${character.name}
+                    </div>
+
+                    <div class="character-sub">
+                        ${character.subtitle}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="right">
+
+                <div class="divider"></div>
+
+                <div class="hearts">
+                    ${heartsHTML}
+                </div>
+
+                <div class="visualize-wrapper">
+
+                    <div class="visualize">
+                        [ Visualizar ]
+                    </div>
+
+                    <div class="popup">
+
+                        <img
+                            src="${character.preview}"
+                            onerror="this.style.display='none'"
+                        >
+
+                        <h3>${character.name}</h3>
+
+                        <p>
+                            ${character.description}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
         `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+function nextPage(){
+
+    const totalPages = Math.ceil(characters.length / perPage);
+
+    if(currentPage < totalPages){
+
+        currentPage++;
+
+        renderCharacters();
     }
+}
 
-    card.innerHTML = `
+function prevPage(){
 
-        <div class="left">
+    if(currentPage > 1){
 
-            <img
-                class="avatar"
-                src="${character.image}"
-            >
+        currentPage--;
 
-            <div class="info">
+        renderCharacters();
+    }
+}
 
-                <div class="character-name">
-                    ${character.name}
-                </div>
-
-                <div class="character-sub">
-                    ${character.subtitle}
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="right">
-
-            <div class="divider"></div>
-
-            <div class="hearts">
-                ${heartsHTML}
-            </div>
-
-            <div class="visualize-wrapper">
-
-                <div class="visualize">
-                    [ Visualizar ]
-                </div>
-
-                <div class="popup">
-
-                    <img
-                        src="${character.preview}"
-                        onerror="this.style.display='none'"
-                    >
-
-                    <h3>${character.name}</h3>
-
-                    <p>
-                        ${character.description}
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-    `;
-
-    container.appendChild(card);
-
-});
-
+renderCharacters();
 </script>
 
 </body>
