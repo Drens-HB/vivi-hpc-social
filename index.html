@@ -132,7 +132,7 @@ body::before{
     rgba(17,7,40,0.95),
     rgba(11,4,28,0.92));
 
-    overflow:hidden;
+    overflow:visible;
 
     backdrop-filter:blur(6px);
 
@@ -259,29 +259,115 @@ body::before{
     opacity:0.18;
 }
 
-.arrow{
+.visualize{
 
-    font-size:52px;
-
-    color:#d6ab5f;
-
-    opacity:0.7;
+    position:relative;
 
     margin-left:30px;
+
+    font-family:'Cinzel', serif;
+
+    font-size:22px;
+
+    letter-spacing:2px;
+
+    color:#d8b06b;
+
+    cursor:pointer;
 
     transition:0.25s;
 }
 
-.member:hover .arrow{
+.visualize:hover{
 
-    transform:translateX(8px);
+    color:#ffd98f;
 
-    opacity:1;
+    text-shadow:
+    0 0 10px rgba(255,220,140,0.35);
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
+.preview-box{
+
+    position:absolute;
+
+    right:0;
+    top:45px;
+
+    width:420px;
+
+    background:
+    linear-gradient(
+    180deg,
+    rgba(17,7,40,0.98),
+    rgba(8,3,20,0.98));
+
+    border:1px solid rgba(214,171,95,0.4);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    transform:
+    translateY(10px)
+    scale(0.96);
+
+    pointer-events:none;
+
+    transition:0.3s;
+
+    z-index:50;
+
+    box-shadow:
+    0 0 40px rgba(100,60,255,0.2);
+}
+
+.visualize:hover .preview-box{
+
+    opacity:1;
+
+    transform:
+    translateY(0)
+    scale(1);
+}
+
+.preview-box img{
+
+    width:100%;
+    height:220px;
+
+    object-fit:cover;
+
+    display:block;
+
+    border-bottom:
+    1px solid rgba(214,171,95,0.25);
+}
+
+.preview-content{
+
+    padding:20px;
+}
+
+.preview-name{
+
+    font-family:'Cinzel', serif;
+
+    font-size:28px;
+
+    margin-bottom:10px;
+
+    color:#f1d08a;
+}
+
+.preview-description{
+
+    font-size:22px;
+
+    line-height:1.4;
+
+    opacity:0.72;
 }
 
 @keyframes appear{
@@ -337,9 +423,7 @@ characters.forEach((character,index)=>{
         : `<span class="gem empty">✦</span>`;
     }
 
-    const div = document.createElement("a");
-
-    div.href = character.page;
+    const div = document.createElement("div");
 
     div.className = "member";
 
@@ -347,33 +431,53 @@ characters.forEach((character,index)=>{
 
     div.innerHTML = `
 
-        <div class="left">
+    <div class="left">
 
-            <img class="avatar" src="${character.image}">
+        <img class="avatar" src="${character.image}">
 
-            <div class="info">
+        <div class="info">
 
-                <h2>${character.name}</h2>
+            <h2>${character.name}</h2>
 
-                <p>${character.subtitle}</p>
+            <p>${character.subtitle}</p>
+
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="separator"></div>
+
+        <div class="gems">
+            ${gemsHTML}
+        </div>
+
+        <div class="visualize">
+
+            [ Visualizar ]
+
+            <div class="preview-box">
+
+                <img src="${character.previewImage}">
+
+                <div class="preview-content">
+
+                    <div class="preview-name">
+                        ${character.name}
+                    </div>
+
+                    <div class="preview-description">
+                        ${character.description}
+                    </div>
+
+                </div>
 
             </div>
 
         </div>
 
-        <div class="right">
-
-            <div class="separator"></div>
-
-            <div class="gems">
-                ${gemsHTML}
-            </div>
-
-            <div class="arrow">
-                ›
-            </div>
-
-        </div>
+    </div>
 
     `;
 
