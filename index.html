@@ -1,183 +1,178 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Uninstall overwolf</title>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relaciones</title>
 
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/window-controls.css" />
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/forms.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/state-slides.css" />
-    <link rel="stylesheet" href="css/app-card.css" />
-    <link rel="stylesheet" href="css/scrollbar.css" />
-    <link rel="stylesheet" href="css/popup.css" />
-    <link rel="stylesheet" href="css/fonts.css" />
+<style>
 
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    *{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+        font-family:Verdana, sans-serif;
+    }
 
-    <script src="js/odk.js"></script>
-    <script src="js/commands.js"></script>
-    <script src="js/block_inputs.js"></script>
-    <script src="js/analytics.js"></script>
-    <script src="js/templates.js"></script>
-    <script src="js/firstSlide.js"></script>
-    <script src="js/progressSlide.js"></script>
-    <script src="js/finishedSlide.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/events.js"></script>
-  </head>
+    body{
+        background:#d2a56d;
+        padding:40px;
+        color:#4b2e1d;
+    }
 
-  <body>
-    <!-- size 480x570 -->
-    <div class="content">
-      <header id="app-header" class="app-header" draggable="true">
-        <div class="app-header-title">
-          <img src="images/logo-small.svg" />
-          <span>Overwolf Uninstaller</span>
-        </div>
+    .panel{
+        max-width:900px;
+        margin:auto;
+        background:#f0d39c;
+        border:6px solid #9b6b3d;
+        border-radius:14px;
+        overflow:hidden;
+        box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    }
 
-        <div class="window-controls-group">
-          <button
-            class="btn-icon window-control window-control-close"
-            onclick="main.closeWindow();"
-          >
-            <svg class="svg-icon-fill">
-              <use xlink:href="assets/svg/sprite.svg#window-control_close" />
-            </svg>
-          </button>
-        </div>
-      </header>
+    .title{
+        background:#c78d4e;
+        padding:20px;
+        font-size:28px;
+        font-weight:bold;
+        border-bottom:4px solid #9b6b3d;
+    }
 
-      <ul class="state-slides">
-        <!-- slide 1 -->
-        <li>
-          <section class="app-title">
-            <h1>Select the apps you would like to uninstall</h1>
-          </section>
+    .character{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:18px;
+        border-bottom:2px solid rgba(0,0,0,0.08);
+    }
 
-          <section class="app-list">
-            <form class="app-list-section form-classic">
-              <!-- Overwolf -->
-              <div class="form-section uninstall-overwolf">
-                <input
-                  hidden
-                  type="checkbox"
-                  name="app-list"
-                  id="overwolf-checkbox"
-                />
-                <label for="overwolf-checkbox">
-                  <div class="featured-app">
-                    <img src="images/logo-big.svg" />
-                    <span>Overwolf</span>
-                  </div>
-                  <b></b>
-                </label>
-              </div>
+    .left{
+        display:flex;
+        align-items:center;
+        gap:16px;
+    }
 
-              <!-- Apps -->
-              <div class="uninstall-apps-section"></div>
-            </form>
-          </section>
+    .avatar{
+        width:64px;
+        height:64px;
+        border-radius:8px;
+        object-fit:cover;
+        border:3px solid #8d5b31;
+        background:white;
+    }
 
-          <section class="uninstalled-apps-status">
-            <i>
-              <svg>
-                <use
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  xlink:href="assets/svg/sprite.svg#alert-icon"
-                ></use>
-              </svg>
-            </i>
-            <span class="uninstalled-apps-status-text">No apps selected</span>
-          </section>
+    .info h2{
+        font-size:24px;
+        margin-bottom:4px;
+    }
 
-          <footer class="app-footer">
-            <button
-              id="cancel-btn"
-              class="btn btn-text"
-              onclick="main.closeWindow()"
-            >
-              Cancel
-            </button>
-            <button id="uninstall-btn" class="btn">Uninstall</button>
-          </footer>
-        </li>
+    .info p{
+        opacity:0.7;
+        font-size:14px;
+    }
 
-        <!-- slide 2 - progress -->
-        <!-- <li class="state-progress">
-          <p>Uninstalling...</p>
-          <progress class="progress-bar" value="0" max="100"></progress>
-        </li> -->
+    .hearts{
+        display:flex;
+        gap:4px;
+        font-size:28px;
+    }
 
-        <!-- slide 3 - finish -->
-        <li class="state-finish">
-          <div class="state-finish-main">
-            <i class="success-illustration">
-              <img src="images/uninstall.svg" />
-            </i>
+    .heart.empty{
+        opacity:0.2;
+    }
 
-            <h1 class="uninstalled-apps-finish-text">
-              We’d love to hear your feedback
-            </h1>
+</style>
+</head>
+<body>
 
-            <h2>Help us improve the product by sharing </br>your experience.</h2>
+<div class="panel">
 
-            <a href="#" onclick="main.navigateToSurvey()" tabindex="-1" class="btn feedback-btn">
-              Share Your Feedback
-            </a>
-          </div>
-
-          <progress class="progress-bar" value="0" max="100"></progress>
-          <footer class="app-footer">
-            <p>Overwolf successfully uninstalled</p>
-
-            <button
-              class="btn btn-close"
-              onclick="main.closeWindow(false)"
-              tabindex="-1"
-            >
-              Close
-            </button>
-          </footer>
-        </li>
-      </ul>
-
-      <section id="subscription-popup" class="overlay-popup">
-        <div class="overlay-popup__overlay"></div>
-        <div class="overlay-popup__popup">
-          <button
-            class="btn-icon window-control window-control-close"
-            onclick="main.closeSubscriptionModal();"
-          >
-            <svg class="svg-icon-fill">
-              <use
-                xlink:href="assets/svg/sprite.svg#window-control_close"
-              ></use>
-            </svg>
-          </button>
-          <h2>
-            Subscriptions still active
-          </h2>
-          <p>
-            You have active subscriptions. To unsubscribe, go to the Overwolf
-            client settings and look for the “Subscription” tab. Would you like
-            to uninstall anyway?
-          </p>
-          <div class="overlay-popup__popup__buttons">
-            <button
-              class="btn btn-text"
-              onclick="main.closeSubscriptionModal();"
-            >
-              Cancel
-            </button>
-            <button class="btn" onclick="main.confirmSubscriptionModal();">
-              Uninstall
-            </button>
-          </div>
-        </div>
-      </section>
+    <div class="title">
+        Relaciones
     </div>
-  </body>
+
+    <div id="characters"></div>
+
+</div>
+
+<script>
+
+//////////////////////////////////////////////////////////
+// AQUI EDITAS TUS PERSONAJES
+//////////////////////////////////////////////////////////
+
+const characters = [
+
+    {
+        name: "Jur Klopp",
+        subtitle: "Mejor amigo",
+        hearts: 8,
+        maxHearts: 10,
+        image: "https://i.imgur.com/JYUB0m3.png"
+    },
+
+    {
+        name: "Vivi Ornitier",
+        subtitle: "Confianza extraña",
+        hearts: 5,
+        maxHearts: 10,
+        image: "https://i.imgur.com/fY6XGJx.png"
+    },
+
+    {
+        name: "Ramsay",
+        subtitle: "Relación tensa",
+        hearts: 2,
+        maxHearts: 10,
+        image: "https://i.imgur.com/8QfR8hG.png"
+    }
+
+];
+
+//////////////////////////////////////////////////////////
+// NO TOCAR SI NO QUIERES MODIFICAR EL FUNCIONAMIENTO
+//////////////////////////////////////////////////////////
+
+const container = document.getElementById("characters");
+
+characters.forEach(character => {
+
+    const row = document.createElement("div");
+    row.className = "character";
+
+    let heartsHTML = "";
+
+    for(let i = 0; i < character.maxHearts; i++){
+
+        if(i < character.hearts){
+            heartsHTML += `<span>❤️</span>`;
+        }else{
+            heartsHTML += `<span class="heart empty">❤️</span>`;
+        }
+    }
+
+    row.innerHTML = `
+        <div class="left">
+
+            <img class="avatar" src="${character.image}">
+
+            <div class="info">
+                <h2>${character.name}</h2>
+                <p>${character.subtitle}</p>
+            </div>
+
+        </div>
+
+        <div class="hearts">
+            ${heartsHTML}
+        </div>
+    `;
+
+    container.appendChild(row);
+
+});
+
+</script>
+
+</body>
 </html>
