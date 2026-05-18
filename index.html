@@ -1,5 +1,4 @@
 <!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +8,9 @@
 <title>Relaciones</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,101 +20,63 @@
     box-sizing:border-box;
 }
 
+html{
+    font-size:75%;
+}
+
 body{
 
     min-height:100vh;
-    overflow-x:hidden;
-
-    background:
-    radial-gradient(circle at 20% 20%, rgba(120,60,255,0.25), transparent 25%),
-    radial-gradient(circle at 80% 30%, rgba(80,50,220,0.20), transparent 30%),
-    radial-gradient(circle at 50% 100%, rgba(160,60,255,0.15), transparent 40%),
-    linear-gradient(135deg,#05010f 0%,#110425 45%,#060111 100%);
-
-    color:#f1d08a;
-
-    font-family:'Cormorant Garamond', serif;
-
-    padding:70px 60px;
-
-    position:relative;
-}
-
-body::before{
-
-    content:"";
-    position:fixed;
-    inset:0;
-
-    background-image:
-    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.4), transparent),
-    radial-gradient(2px 2px at 70% 60%, rgba(255,255,255,0.3), transparent),
-    radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.35), transparent),
-    radial-gradient(1px 1px at 90% 20%, rgba(255,255,255,0.3), transparent);
-
-    opacity:0.5;
-    pointer-events:none;
-}
-
-.container{
-    max-width:1500px;
-    margin:auto;
-}
-
-.hero{
-
-    text-align:center;
-    margin-bottom:80px;
-
-    opacity:0;
-    transform:translateY(30px);
-
-    animation:fadeUp 1.2s forwards;
-}
-
-.top-line{
-
-    width:100%;
-    max-width:900px;
-    height:1px;
-
-    margin:auto auto 30px auto;
-
-    background:
-    linear-gradient(to right,
-    transparent,
-    rgba(214,171,95,0.8),
-    transparent);
-}
-
-.hero h1{
 
     font-family:'Cinzel', serif;
 
-    font-size:82px;
-    letter-spacing:5px;
+    background:
+        radial-gradient(circle at top,
+        #2a0a4d 0%,
+        #140021 45%,
+        #050008 100%);
 
-    margin-bottom:10px;
+    background-attachment:fixed;
 
-    font-weight:600;
+    color:#e7d1a2;
+
+    padding:40px;
 }
 
-.hero p{
+.container{
+    width:min(1100px, 78vw);
+    margin:auto;
+}
 
-    font-size:30px;
-    opacity:0.75;
+header{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+header h1{
+    font-size:4.6rem;
+    font-weight:700;
+    letter-spacing:3px;
+
+    color:#f2d7a0;
+}
+
+header p{
+    margin-top:-4px;
+
+    font-size:1.2rem;
+    opacity:0.7;
 
     font-style:italic;
 }
 
-.members{
-
+.characters{
     display:flex;
     flex-direction:column;
-    gap:26px;
+    gap:14px;
 }
 
-.member{
+.character-card{
 
     position:relative;
 
@@ -121,288 +84,231 @@ body::before{
     align-items:center;
     justify-content:space-between;
 
-    padding:28px 34px;
+    min-height:90px;
 
-    border:1px solid rgba(214,171,95,0.35);
+    padding:18px 26px;
 
-    border-radius:20px;
+    border:1px solid rgba(220,170,90,0.35);
+
+    border-radius:14px;
 
     background:
-    linear-gradient(90deg,
-    rgba(17,7,40,0.95),
-    rgba(11,4,28,0.92));
+        linear-gradient(
+            90deg,
+            rgba(33,7,58,0.88),
+            rgba(8,0,22,0.96)
+        );
 
     overflow:visible;
 
-    backdrop-filter:blur(6px);
-
-    transition:0.35s;
-
-    opacity:0;
-    transform:translateY(40px);
-
-    animation:appear 0.8s forwards;
+    transition:0.2s;
 }
 
-.member:hover{
-
-    transform:translateY(-6px);
-
-    border-color:#f0c676;
+.character-card:hover{
+    border-color:rgba(255,215,130,0.55);
 
     box-shadow:
-    0 0 30px rgba(140,80,255,0.18),
-    0 0 80px rgba(90,40,255,0.08);
-}
-
-.member::before{
-
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background:
-    radial-gradient(circle at left,
-    rgba(100,60,255,0.15),
-    transparent 45%);
-
-    pointer-events:none;
+        0 0 18px rgba(163,84,255,0.12);
 }
 
 .left{
-
     display:flex;
     align-items:center;
-    gap:30px;
-
-    min-width:450px;
+    gap:18px;
 }
 
 .avatar{
 
-    width:110px;
-    height:110px;
+    width:64px;
+    height:64px;
 
-    border-radius:18px;
+    border-radius:12px;
 
     object-fit:cover;
 
-    border:1px solid rgba(214,171,95,0.6);
+    border:1px solid rgba(230,190,120,0.35);
 
-    transition:0.3s;
+    background:
+        linear-gradient(145deg,#2a1247,#140021);
+
+    flex-shrink:0;
 }
 
-.member:hover .avatar{
-    transform:scale(1.04);
+.info{
+    min-width:280px;
 }
 
-.info h2{
+.character-name{
 
-    font-family:'Cinzel', serif;
+    font-size:2.3rem;
 
-    font-size:54px;
-    letter-spacing:2px;
+    font-weight:700;
 
-    margin-bottom:6px;
+    color:#f0d8aa;
+
+    text-shadow:
+        0 0 12px rgba(255,215,120,0.12);
 }
 
-.info p{
+.character-sub{
 
-    font-size:34px;
+    margin-top:3px;
 
-    opacity:0.7;
+    font-size:1.15rem;
+
+    opacity:0.8;
 
     font-style:italic;
 }
 
-.separator{
+.divider{
 
     width:1px;
-    height:90px;
+    height:48px;
 
     background:
-    linear-gradient(to bottom,
-    transparent,
-    rgba(214,171,95,0.5),
-    transparent);
+        linear-gradient(
+            transparent,
+            rgba(255,215,120,0.25),
+            transparent
+        );
 
-    margin:0 40px;
+    margin:0 26px;
 }
 
 .right{
-
     display:flex;
     align-items:center;
-    gap:18px;
-
-    flex:1;
-    justify-content:flex-end;
+    gap:28px;
 }
 
-.gems{
-
+.hearts{
     display:flex;
-    gap:18px;
-
-    font-size:40px;
+    gap:8px;
 }
 
-.gem{
+.heart{
 
-    color:#f2c96c;
+    font-size:1.8rem;
+
+    color:#3b2446;
+}
+
+.heart.filled{
+
+    color:#ffd86f;
 
     text-shadow:
-    0 0 10px rgba(255,215,120,0.4);
+        0 0 10px rgba(255,216,111,0.45);
 }
 
-.empty{
-    opacity:0.18;
+.visualize-wrapper{
+    position:relative;
 }
 
 .visualize{
 
-    position:relative;
+    cursor:pointer;
 
-    margin-left:30px;
-
-    font-family:'Cinzel', serif;
-
-    font-size:22px;
+    font-size:1rem;
 
     letter-spacing:2px;
 
-    color:#d8b06b;
+    color:#d9bb80;
 
-    cursor:pointer;
-
-    transition:0.25s;
+    transition:0.2s;
 }
 
 .visualize:hover{
-
-    color:#ffd98f;
-
-    text-shadow:
-    0 0 10px rgba(255,220,140,0.35);
+    color:#ffe4aa;
 }
 
-.preview-box{
+.popup{
 
     position:absolute;
 
+    top:120%;
     right:0;
-    top:45px;
 
-    width:420px;
+    width:320px;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    border:1px solid rgba(255,215,130,0.25);
 
     background:
-    linear-gradient(
-    180deg,
-    rgba(17,7,40,0.98),
-    rgba(8,3,20,0.98));
+        linear-gradient(
+            180deg,
+            rgba(21,4,36,0.97),
+            rgba(7,0,18,0.98)
+        );
 
-    border:1px solid rgba(214,171,95,0.4);
-
-    border-radius:18px;
-
-    overflow:hidden;
+    backdrop-filter:blur(8px);
 
     opacity:0;
+    visibility:hidden;
 
-    transform:
-    translateY(10px)
-    scale(0.96);
+    transform:translateY(8px);
 
-    pointer-events:none;
+    transition:0.25s;
 
-    transition:0.3s;
-
-    z-index:50;
+    z-index:9999;
 
     box-shadow:
-    0 0 40px rgba(100,60,255,0.2);
+        0 0 24px rgba(0,0,0,0.55);
 }
 
-.visualize:hover .preview-box{
+.visualize-wrapper:hover .popup{
 
     opacity:1;
+    visibility:visible;
 
-    transform:
-    translateY(0)
-    scale(1);
+    transform:translateY(0);
 }
 
-.preview-box img{
+.popup img{
 
     width:100%;
-    height:220px;
+    height:180px;
 
     object-fit:cover;
 
-    display:block;
+    border-radius:10px;
 
-    border-bottom:
-    1px solid rgba(214,171,95,0.25);
+    margin-bottom:12px;
+
+    background:#120021;
 }
 
-.preview-content{
+.popup h3{
 
-    padding:20px;
+    font-size:1.5rem;
+    margin-bottom:6px;
 }
 
-.preview-name{
+.popup p{
 
-    font-family:'Cinzel', serif;
+    font-size:0.95rem;
+    line-height:1.5;
 
-    font-size:28px;
-
-    margin-bottom:10px;
-
-    color:#f1d08a;
-}
-
-.preview-description{
-
-    font-size:22px;
-
-    line-height:1.4;
-
-    opacity:0.72;
-}
-
-@keyframes appear{
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes fadeUp{
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+    opacity:0.85;
 }
 
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
-    <section class="hero">
+<header>
+    <h1>RELACIONES</h1>
+    <p>"Cum populo, cum armis, ad potestatem."</p>
+</header>
 
-        <div class="top-line"></div>
-
-        <h1>RELACIONES</h1>
-
-        <p>"Cum populo, cum armis, ad potestatem."</p>
-
-    </section>
-
-    <div class="members" id="members"></div>
+<div class="characters" id="characters"></div>
 
 </div>
 
@@ -410,78 +316,83 @@ body::before{
 
 <script>
 
-const container = document.getElementById("members");
+const container = document.getElementById("characters");
 
-characters.forEach((character,index)=>{
+characters.forEach(character => {
 
-    let gemsHTML = "";
+    const card = document.createElement("div");
+    card.className = "character-card";
 
-    for(let i=0;i<character.max;i++){
+    let heartsHTML = "";
 
-        gemsHTML += i < character.gems
-        ? `<span class="gem">✦</span>`
-        : `<span class="gem empty">✦</span>`;
+    for(let i = 0; i < character.maxHearts; i++){
+
+        heartsHTML += `
+            <span class="heart ${i < character.hearts ? 'filled' : ''}">
+                ✦
+            </span>
+        `;
     }
 
-    const div = document.createElement("div");
+    card.innerHTML = `
 
-    div.className = "member";
+        <div class="left">
 
-    div.style.animationDelay = `${index * 0.2}s`;
+            <img
+                class="avatar"
+                src="${character.image}"
+                onerror="this.style.display='none'"
+            >
 
-    div.innerHTML = `
+            <div class="info">
 
-    <div class="left">
+                <div class="character-name">
+                    ${character.name}
+                </div>
 
-        <img class="avatar" src="${character.image}">
-
-        <div class="info">
-
-            <h2>${character.name}</h2>
-
-            <p>${character.subtitle}</p>
-
-        </div>
-
-    </div>
-
-    <div class="right">
-
-        <div class="separator"></div>
-
-        <div class="gems">
-            ${gemsHTML}
-        </div>
-
-        <div class="visualize">
-
-            [ Visualizar ]
-
-            <div class="preview-box">
-
-                <img src="${character.previewImage}">
-
-                <div class="preview-content">
-
-                    <div class="preview-name">
-                        ${character.name}
-                    </div>
-
-                    <div class="preview-description">
-                        ${character.description}
-                    </div>
-
+                <div class="character-sub">
+                    ${character.subtitle}
                 </div>
 
             </div>
 
         </div>
 
-    </div>
+        <div class="right">
 
+            <div class="divider"></div>
+
+            <div class="hearts">
+                ${heartsHTML}
+            </div>
+
+            <div class="visualize-wrapper">
+
+                <div class="visualize">
+                    [ Visualizar ]
+                </div>
+
+                <div class="popup">
+
+                    <img
+                        src="${character.preview}"
+                        onerror="this.style.display='none'"
+                    >
+
+                    <h3>${character.name}</h3>
+
+                    <p>
+                        ${character.description}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
     `;
 
-    container.appendChild(div);
+    container.appendChild(card);
 
 });
 
