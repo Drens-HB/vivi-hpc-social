@@ -199,6 +199,16 @@ header p{
         0 0 10px rgba(255,216,111,0.45);
 }
 
+.heart.enemy{
+
+    color:#d84b5f;
+
+    opacity:1;
+
+    text-shadow:
+        0 0 10px rgba(216,75,95,0.35);
+}
+
 .visualize-wrapper{
     position:relative;
 }
@@ -404,7 +414,7 @@ const characters = [
 
         name: "Theofilus Budge",
         subtitle: "Amigo de Ravenclaw",
-        hearts: 4,
+        hearts: 6,
         maxHearts: 10,
         image: "https://i.imgur.com/ToTbwgK.png",
         preview: "https://i.gyazo.com/84f960a63ff7045ff79e3bbfaad73feb.png",
@@ -416,7 +426,7 @@ const characters = [
 
         name: "Theodore Selvin",
         subtitle: "Compañero de Ravenclaw",
-        hearts: 1,
+        hearts: 4,
         maxHearts: 10,
         image: "https://i.imgur.com/7hQhHu3.png",
         preview: "https://i.imgur.com/7y3JNJd.png",
@@ -429,7 +439,7 @@ const characters = [
 
         name: "Amelia Crawford",
         subtitle: "Compañera de Ravenclaw",
-        hearts: 3,
+        hearts: 5,
         maxHearts: 10,
         image: "https://i.imgur.com/Vwi90TA.png",
         preview: "https://i.ibb.co/8g1XdwKV/content-1.png",
@@ -440,7 +450,7 @@ const characters = [
 
         name: "Niklas Dahl",
         subtitle: "Compañero de Gryffindor",
-        hearts: 3,
+        hearts: 5,
         maxHearts: 10,
         image: "https://i.imgur.com/t0eSSOt.png",
         preview: "https://i.imgur.com/lGGFxrr.png",
@@ -452,7 +462,7 @@ const characters = [
 
         name: "Daphne Evans",
         subtitle: "Compañera de Slytherin",
-        hearts: 1,
+        hearts: 4,
         maxHearts: 10,
         image: "https://i.imgur.com/uXgFXp1.png",
         preview: "https://i.imgur.com/p5nFt9k.jpeg",
@@ -465,7 +475,7 @@ const characters = [
 
         name: "Sycren Dyaleith",
         subtitle: "Compañero de Ravenclaw",
-        hearts: 1,
+        hearts: 4,
         maxHearts: 10,
         image: "https://i.imgur.com/nWWRvQv.png",
         preview: "https://i.imgur.com/3cxRT5j.png",
@@ -477,7 +487,7 @@ const characters = [
 
         name: "Galatea de Thalassa",
         subtitle: "Amiga de Hufflepuff",
-        hearts: 3,
+        hearts: 5,
         maxHearts: 10,
         image: "https://i.imgur.com/cHSvm23.png",
         preview: "https://i.imgur.com/JQi0n4a.jpeg",
@@ -489,7 +499,7 @@ const characters = [
 
         name: "Jude Bellingham",
         subtitle: "Amigo de Hufflepuff",
-        hearts: 2,
+        hearts: 5,
         maxHearts: 10,
         image: "https://i.imgur.com/MDYMEDy.png",
         preview: "https://i.imgur.com/jAvVvZW.png",
@@ -501,7 +511,7 @@ const characters = [
 
         name: "Elizabeth S.",
         subtitle: "Compañera de Ravenclaw",
-        hearts: 1,
+        hearts: 4,
         maxHearts: 10,
         image: "https://i.imgur.com/wnpo0Bz.png",
         preview: "https://i.imgur.com/g1aWXQK.png",
@@ -513,12 +523,60 @@ const characters = [
 
         name: "Aeryth Vantrelis",
         subtitle: "Compañera de Hufflepuff",
-        hearts: 1,
+        hearts: 4,
         maxHearts: 10,
         image: "https://i.imgur.com/mh1nyn8.png",
         preview: "https://i.gyazo.com/d86e6dfcd45943f34abda5687923c5bb.png",
         description:
             "Compañera de Hufflepuff. Siempre recordará que su primer duelo fue con ella."
+    },
+
+           {
+
+        name: "Kamila Karađorđević",
+        subtitle: "Alumna de Slytherin",
+        hearts: 3,
+        maxHearts: 10,
+        image: "https://i.imgur.com/puUJIPo.png",
+        preview: "https://i.imgur.com/VqZ7O8R.png",
+        description:
+            "Alumna de Slytherin. No tiene relación con ella pero no le inspira confianza por su elitismo."
+    },
+
+           {
+
+        name: "Perpétua Haggard",
+        subtitle: "Sospechosa de asesinato",
+        hearts: 3,
+        maxHearts: 10,
+        image: "https://i.imgur.com/wlcElzy.png",
+        preview: "https://i.imgur.com/Tr6q1aA.png",
+        description:
+            "Sospechosa del asesinato de la señora Norris. "
+    },
+
+           {
+
+        name: "Katerina L.",
+        subtitle: "Alumna de Slytherin",
+        hearts: 2,
+        maxHearts: 10,
+        image: "https://i.imgur.com/QwoRc93.png",
+        preview: "https://i.gyazo.com/c24b172d7ae0330aae80b66e66e898c6.jpg",
+        description:
+            "Alumna que atacó a su primo."
+    },
+
+           {
+
+        name: "Sayt Iskandar",
+        subtitle: "Primo de Theo Budge.",
+        hearts: 4,
+        maxHearts: 10,
+        image: "https://i.imgur.com/NkVPU1j.png",
+        preview: "https://gyazo.com/9429d30b17413406c65357c97737993b.png",
+        description:
+            "Alumno de Slytherin. Vivi siente que tiene muchos aires de grandeza."
     },
 
 
@@ -546,14 +604,18 @@ function renderCharacters(){
 
         let heartsHTML = "";
 
-        for(let i = 0; i < character.maxHearts; i++){
+const heartClass = character.hearts <= 3
+    ? 'enemy'
+    : 'filled';
 
-            heartsHTML += `
-                <span class="heart ${i < character.hearts ? 'filled' : ''}">
-                    ✦
-                </span>
-            `;
-        }
+for(let i = 0; i < character.maxHearts; i++){
+
+    heartsHTML += `
+        <span class="heart ${i < character.hearts ? heartClass : ''}">
+            ✦
+        </span>
+    `;
+}
 
         card.innerHTML = `
 
