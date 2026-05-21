@@ -117,6 +117,165 @@ body{
     z-index:5;
 }
 
+/* ========================= */
+/*      NUEVA BITÁCORA       */
+/* ========================= */
+
+.bitacora-layout{
+
+    display:flex;
+
+    gap:26px;
+
+    align-items:flex-start;
+}
+
+/* PANEL IZQUIERDO */
+
+.spell-panel{
+
+    flex:1;
+
+    height:800px;
+
+    min-width:0;
+
+    padding:28px;
+
+    border-radius:28px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,0.03),
+        rgba(80,120,255,0.03)
+    );
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.spell-panel::-webkit-scrollbar{
+    width:6px;
+}
+
+.spell-panel::-webkit-scrollbar-thumb{
+
+    background:
+    rgba(80,120,255,0.4);
+
+    border-radius:999px;
+}
+
+.spell-panel h3{
+
+    font-family:'Cinzel', serif;
+
+    color:#9dc7ff;
+
+    margin-bottom:24px;
+
+    font-size:38px;
+}
+
+.spell-panel ul{
+
+    padding-left:22px;
+
+    line-height:2.2;
+
+    color:#dde3f5;
+}
+
+/* DERECHA */
+
+.right-panels{
+
+    width:400px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:20px;
+
+    flex-shrink:0;
+}
+/* CAPSULAS */
+
+.side-card{
+
+    height:450px;
+
+    padding:28px;
+
+    border-radius:28px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,0.03),
+        rgba(140,90,255,0.03)
+    );
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.side-card:hover{
+
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(80,120,255,0.12);
+}
+
+.side-card h3{
+
+    font-family:'Cinzel', serif;
+
+    color:#9dc7ff;
+
+    margin-bottom:18px;
+
+    font-size:32px;
+}
+
+.side-card ul{
+
+    padding-left:22px;
+
+    line-height:2;
+
+    color:#dde3f5;
+}
+
+
+    .bitacora-layout{
+
+        grid-template-columns:1fr;
+        height:auto;
+    }
+
+    .spell-panel{
+        height:800px;
+    }
+
+    .right-panels{
+        grid-template-rows:auto;
+    }
+
+    .side-card{
+        max-height:390px;
+    }
+}
+
 .hero-content h1{
 
     font-family:'Cinzel', serif;
@@ -136,6 +295,64 @@ body{
     color:#d6d6eb;
 
     font-size:18px;
+}
+
+/* ========================= */
+/*        NUEVA BITÁCORA     */
+/* ========================= */
+
+
+/* COLORES */
+
+.blue{
+
+    background:
+    rgba(80,120,255,0.12);
+
+    border-color:
+    rgba(80,120,255,0.22);
+}
+
+.red{
+
+    background:
+    rgba(220,80,80,0.12);
+
+    border-color:
+    rgba(220,80,80,0.22);
+}
+
+.gold{
+
+    background:
+    rgba(255,210,120,0.12);
+
+    border-color:
+    rgba(255,210,120,0.22);
+}
+
+.purple{
+
+    background:
+    rgba(180,120,255,0.12);
+
+    border-color:
+    rgba(180,120,255,0.22);
+}
+
+.side-card::-webkit-scrollbar,
+.spell-panel::-webkit-scrollbar{
+
+    width:6px;
+}
+
+.side-card::-webkit-scrollbar-thumb,
+.spell-panel::-webkit-scrollbar-thumb{
+
+    background:
+    rgba(80,120,255,0.4);
+
+    border-radius:999px;
 }
 
 /* ========================= */
@@ -241,6 +458,21 @@ body{
     font-size:32px;
 
     color:#9dc7ff;
+
+    margin-bottom:28px;
+
+    letter-spacing:2px;
+}
+
+.perso-text{
+
+    font-family:'Cinzel', serif;
+
+    font-size:16px;
+
+    color:#ffffff;
+
+    text-align: justify;
 
     margin-bottom:28px;
 
@@ -600,68 +832,17 @@ body{
 /*         BITÁCORA          */
 /* ========================= */
 
-.log-grid{
 
-    display:grid;
 
-    grid-template-columns:
-    repeat(auto-fit,minmax(320px,1fr));
 
-    gap:22px;
-}
 
-.log{
 
-    padding:25px;
-
-    border-radius:24px;
-
-    background:
-    rgba(255,255,255,0.03);
-
-    border:
-    1px solid rgba(255,255,255,0.07);
-
-    max-height:650px;
-
-    overflow:auto;
-}
-
-.log::-webkit-scrollbar{
-    width:6px;
-}
-
-.log::-webkit-scrollbar-thumb{
-
-    background:
-    rgba(80,120,255,0.35);
-
-    border-radius:999px;
-}
-
-.log h3{
-
-    font-family:'Cinzel', serif;
-
-    color:#9dc7ff;
-
-    margin-bottom:18px;
-}
-
-.log ul{
-
-    padding-left:18px;
-
-    line-height:2;
-
-    color:#d7dcef;
-}
 
 /* ========================= */
 /*        RESPONSIVE         */
 /* ========================= */
 
-@media(max-width:950px){
+@media(max-width:800px){
 
     .double{
         grid-template-columns:1fr;
@@ -970,7 +1151,127 @@ body{
         </div>
 
     </section>
-</div>
+
+
+    <section id="persona" class="section">
+
+        <div class="magic-box">
+
+            <h2 class="section-title">
+                Personalidad & Apariencia
+            </h2>
+
+            <div class="perso-text">
+
+                Vivi es reservado y tiende a mantenerse en segundo plano, con una visión bastante gris de las cosas que le lleva a no esperar demasiado ni de sí mismo ni de los demás. No confía en su suerte ni en su lugar dentro del mundo mágico, lo que le empuja a esforzarse más de la cuenta para no quedarse atrás; aprende rápido, sí, pero lo vive como una obligación silenciosa más que como un talento destacable. Cuando la situación lo exige, puede volverse sorprendentemente preciso y centrado, reaccionando con rapidez y cierta intuición casi instintiva, pero sin ningún tipo de épica ni deseo de reconocimiento, como si simplemente estuviera haciendo lo necesario para salir del paso.
+                <br><br><br>
+                Vivi es un chico de baja estatura y constitución muy delgada, con un aspecto general frágil que hace que pase desapercibido entre otros estudiantes con más presencia; su piel es pálida, su cabello negro cae desordenado sobre el rostro y sus ojos, grandes y oscuros, suelen estar marcados por un leve cansancio constante. Hay en su mirada algo particularmente atento: se fija en detalles pequeños, movimientos sutiles o cambios en el entorno que otros ignoran, pero no lo convierte en alguien llamativo, sino más bien en alguien que observa demasiado y habla poco. Su uniforme rara vez está impecable; le queda ligeramente grande, con la corbata floja y la ropa algo descuidada, como si nunca terminara de sentirse cómodo en su propia piel ni en el entorno que le rodea.
+
+            </div>
+
+        </div>
+
+    </section>
+
+<section id="logbook" class="section">
+
+    <div class="magic-box">
+
+        <h2 class="section-title">
+            Bitácora
+        </h2>
+
+        <div class="bitacora-layout">
+
+            <!-- IZQUIERDA -->
+
+            <div class="spell-panel">
+
+                <h3>
+                    Habilidades
+                </h3>
+
+                <ul>
+
+                    <li>[Comandos Básicos] Escudo Mágico</li>
+                    <li>[Comandos Básicos] Resistir</li>
+                    <li>[Comandos Básicos] Evadir</li>
+                    <li>[Comandos Básicos] Levantarse</li>
+                    <li>[Comandos Básicos] Equipar/Desequipar</li>
+                    <li>[Comandos Básicos] Interponerse</li>
+                    <li>[Comandos Básicos] Liberar</li>
+                    <li>[Comandos Básicos] Huir</li>
+                    <li>[Comandos Básicos] Llamada de Auxilio</li>
+
+                    <br>
+
+                    <li>[Temario General] Wingardium Leviosa</li>
+                    <li>[Temario General] Reparo</li>
+                    <li>[Temario General] Lumos</li>
+                    <li>[Temario General] Revelio</li>
+                    <li>[Temario General] Finite Incantatem</li>
+                    <li>[Temario General] Evanesco</li>
+
+                    <br>
+
+                    <li>[DCAO] Petrificus Totalus</li>
+                    <li>[DCAO] Flipendo</li>
+                    <li>[DCAO] Protego</li>
+                    <li>[DCAO] Expelliarmus</li>
+
+                </ul>
+
+            </div>
+
+            <!-- DERECHA -->
+
+            <div class="right-panels">
+
+                <div class="side-card">
+
+                    <h3>
+                        Conocimientos
+                    </h3>
+
+                    <ul>
+
+                        <li>Encantamientos: 32 + 5 [Libro]</li>
+                        <li>DCAO: 52 + 5 [Libro]</li>
+                        <li>Historia de la Magia: 40</li>
+                        <li>CCM: 50</li>
+
+
+
+                    </ul>
+
+                </div>
+
+                <div class="side-card">
+
+                    <h3>
+                        Equipamiento
+                    </h3>
+
+                    <ul>
+
+                        <li>Varita de Abeto</li>
+                        <li>Nab-Sack</li>
+                        <li>Fragmento Común x5</li>
+                        <li>Fragmento Raro x2</li>
+                        <li>"Pegaso" (Abraxan)</li>
+
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>  
 
 <script>
 
