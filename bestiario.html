@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bestiario</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    margin:0;
+
+    width:1000px;
+    height:700px;
+
+    overflow:hidden;
+
+    background:#2c1b0f;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    font-family:'Cormorant Garamond', serif;
+}
+
+.book{
+
+    position:relative;
+
+    width:1000px;
+    height:700px;
+
+    background-image:
+    url("https://i.imgur.com/t0XCt11.jpeg");
+
+    background-size:cover;
+    background-position:center;
+
+    margin:0;
+}
+
+.friendship{
+
+    text-align:center;
+
+    font-size:24px;
+
+    margin-top:-15px;
+
+    margin-bottom:5px;
+
+    letter-spacing:4px;
+}
+
+.heart-full{
+
+    color:#8b0000;
+}
+
+.heart-empty{
+
+    color:#b8a58c;
+}
+
+/* =====================
+   ZONAS DE LAS PÁGINAS
+===================== */
+
+.left-page{
+
+    position:absolute;
+
+    left:140px;
+    top:90px;
+
+    width:317px;
+    height:492px;
+    
+    overflow:hidden;
+
+    display:block;
+}
+
+.left-page img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transform:rotate(4deg) scale(1.06);
+
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.35);
+
+}
+
+.right-page{
+
+    position:absolute;
+
+    left:540px;
+    top:75px;
+
+    width:320px;
+    height:540px;
+
+    padding-left:28px;
+    padding-right:12px;
+
+    overflow:hidden;
+
+    color:#2f2416;
+}
+
+.title{
+
+    font-family:'Old English Text MT', serif;
+    font-size:32px;
+    font-weight:700;
+    line-height:1;
+    margin-top: 15px;
+    margin-bottom:12px;
+    text-align:center;
+    color:#1f1810;
+}
+
+.section{
+
+    margin-bottom:18px;
+}
+
+.section-title{
+
+    font-family:'Cincel';
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:8px;
+    color:#5b3d1a;
+    padding-left:8px;
+}
+
+.section-content{
+
+    font-size:18px;
+    padding-left:8px;
+    margin-bottom:18px;
+}
+
+.description{
+
+    margin-top:25px;
+    font-size:16px;
+    line-height:1.55;
+    padding-left:8px;
+}
+
+/* =====================
+      PORTADA
+===================== */
+
+.cover{
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    height:100%;
+}
+
+.cover h1{
+
+    font-family:'Old English Text MT';
+
+    font-size:40px;
+
+    margin-bottom:20px;
+}
+
+.cover h2{
+
+    font-size:28px;
+
+    margin-bottom:35px;
+}
+
+.cover p{
+
+    max-width:500px;
+
+    font-size:24px;
+
+    line-height:1.5;
+}
+
+.cover-page{
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    color:#2f2416;
+}
+
+.cover-page h1{
+
+    font-family:'Old English Text MT';
+
+    font-size:38px;
+
+    margin-top:20px;
+
+    margin-bottom:25px;
+}
+
+.cover-page h2{
+
+    font-size:24px;
+
+    margin-bottom:25px;
+
+    font-weight:normal;
+}
+
+.cover-text{
+
+    width:250px;
+
+    font-size:20px;
+
+    line-height:1.8;
+}
+
+/* =====================
+      BOTONES
+===================== */
+
+.controls{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    pointer-events:auto;
+}
+
+.controls button{
+    position:absolute;
+}
+
+.prev-btn{
+
+    left:235px;
+    top:600px;
+}
+
+.next-btn{
+
+    left:655px;
+    top:595px;
+}
+button{
+
+    padding:10px 18px;
+
+    border:none;
+
+    background:#4f3119;
+
+    color:#f0d7a4;
+
+    cursor:pointer;
+
+    border-radius:6px;
+
+    font-family:'Cinzel', serif;
+}
+
+button:hover{
+
+    background:#694123;
+}
+
+.page-number{
+
+    color:#f0d7a4;
+
+    font-family:'Cinzel', serif;
+}
+
+/* Animación */
+
+.fade{
+
+    animation:fade 0.25s;
+}
+
+@keyframes fade{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+.creature-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:10px;
+
+    font-size:14px;
+}
+
+
+
+.creature-table tr{
+
+    border-bottom:1px solid rgba(80,60,30,0.15);
+}
+
+.creature-table td{
+
+    padding:8px 0;
+    vertical-align:top;
+}
+
+.creature-table td:first-child{
+
+    width:45%;
+
+    font-weight:700;
+
+    color:#5b3d1a;
+}
+
+.creature-table td:last-child{
+
+    width:55%;
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="book fade" id="book">
+
+    <div class="left-page" id="leftPage"></div>
+
+    <div class="right-page" id="rightPage"></div>
+
+    <div class="controls">
+
+        <button class="prev-btn" onclick="previousPage()">
+            ◄ Anterior
+        </button>
+
+        <button class="next-btn" onclick="nextPage()">
+            Siguiente ►
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+const bestiary = [
+
+
+
+{
+    cover:true,
+
+    leftTitle:"Bestiario",
+
+    leftText:`
+	Bestiario con las criaturas obtenidas por Vivi Ornitier en su periplo por el mundo mágico. No todas representan una amenaza, pero todas 	merecen ser estudiadas.`,
+
+    rightTitle:"Prólogo",
+
+    rightSubtitle:"Compendio de criaturas conocidas",
+
+    rightText:`
+	Para poder moverse a través del bestiario, pulsa los botones inferiores de "Anterior" o "Siguiente" para navegar a través de las diferentes páginas.
+
+La información aquí contenida puede estar incompleta o sujeta a revisión.
+`
+},
+
+{
+    title:"Abraxan",
+    friendship:2,
+    image:"https://images-ext-1.discordapp.net/external/O5Zi7xnSKWRjeUWp3WH8NAjRLpx_cPfO8YS744aPncQ/https/imgur.com/gBPusx5.png?format=webp&quality=lossless&width=960&height=960",
+    classification:"XX a XXXX",
+    nickname:"Pegaso",
+    race:"Palomino alado",
+    habitat:"Criatura Mágica cosmopolitas.",
+    food:"Hierba, cereales y, ocasionalmente, whisky de malta de buena calidad.",
+    data:"Son tan fuertes que pueden arrastrar carruajes mágicos durante largas distancias. Los caballos de Beauxbatons pertenecen a esta especie.."
+},
+
+{
+    title:"Augurey",
+    friendship:3,
+    image:"https://images-ext-1.discordapp.net/external/idNRtCbL0YJET2VGthJikrY6ub7rcTlqKcx9D6X0-qI/%3Fcb%3D20240504193042/https/static.wikia.nocookie.net/harrypotterbooks/images/9/94/Augurey.jpeg/revision/latest?format=webp",
+    classification:"XX",
+    nickname:"Kloppy",
+    race:"Ave mágica",
+    habitat:"Bosques húmedos, marismas y zonas lluviosas alejadas de la actividad humana..",
+    food:"Insectos, arañas, pequeños anfibios y otras presas de reducido tamaño..",
+    data:"Antiguamente se creía que su canto anunciaba la muerte. En realidad, suele cantar cuando percibe la llegada de lluvia o tormentas.."
+},
+
+{
+    title:"Diablillo",
+    friendship:1,
+    image:"https://static.wikia.nocookie.net/harrypotter/images/a/a3/Imp_at_the_Magical_Creatures_Reserve.jpg/revision/latest?cb=20210413080213",
+    classification:"XX",
+    nickname:"Tykki",
+    race:"Ser mágico menor.",
+    habitat:"Bosques, ruinas y zonas mágicas poco transitadas.",
+    food:"Omnívora. Consumen frutos, insectos y prácticamente cualquier cosa que encuentren.",
+    data:"Son extremadamente traviesos y disfrutan causando pequeñas molestias a viajeros y magos despistados.."
+},
+
+{
+    title:"Puffskein",
+    friendship:1,
+    image:"https://images-ext-1.discordapp.net/external/KuIZNKl7E2m9gbXZ7OvDEsuDnw9H4IGN3BR5fVXQvO0/https/i.pinimg.com/736x/1b/42/b4/1b42b4300995b7045eba6aa154464670.jpg?format=webp",
+    classification:"XX",
+    nickname:"Funko",
+    race:"Bestia mágica doméstica",
+    habitat:"Doméstico. Puede encontrarse en hogares mágicos de todo el mundo..",
+    food:"Prácticamente cualquier resto de comida. También polvo, migas e incluso suciedad acumulada.",
+    data:"Son tan tranquilos que muchas familias los tienen como mascotas. Algunas variedades, como el Pygmy Puff, fueron popularizadas por los gemelos Weasley."
+},
+
+];
+
+let currentPage = 0;
+
+const leftPage =
+document.getElementById("leftPage");
+
+const rightPage =
+document.getElementById("rightPage");
+
+
+
+const book =
+document.getElementById("book");
+
+function renderPage(){
+
+    const page = bestiary[currentPage];
+
+    book.classList.remove("fade");
+
+    void book.offsetWidth;
+
+    book.classList.add("fade");
+
+if(page.cover){
+
+    leftPage.innerHTML = `
+
+        <div class="cover-page">
+
+            <h1>${page.leftTitle}</h1>
+
+            <div class="cover-text">
+
+                ${page.leftText}
+
+            </div>
+
+        </div>
+
+    `;
+
+    rightPage.innerHTML = `
+
+        <div class="cover-page">
+
+            <h1>${page.rightTitle}</h1>
+
+            <h2>${page.rightSubtitle}</h2>
+
+            <div class="cover-text">
+
+                ${page.rightText}
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    }else{
+
+        leftPage.innerHTML = `
+            <img src="${page.image}">
+        `;
+
+rightPage.innerHTML = `
+
+<div class="title">
+    ${page.title}
+</div>
+
+<div class="friendship">
+    ${renderHearts(page.friendship || 0)}
+</div>
+
+    <table class="creature-table">
+
+        <tr>
+            <td>Obtención</td>
+            <td>${page.date || "-"}</td>
+        </tr>
+
+        <tr>
+            <td>Clasificación</td>
+            <td>${page.classification || "-"}</td>
+        </tr>
+
+        <tr>
+            <td>Apodo</td>
+            <td>${page.nickname || "-"}</td>
+        </tr>
+
+        <tr>
+            <td>Raza</td>
+            <td>${page.race || "-"}</td>
+        </tr>
+
+        <tr>
+            <td>Hábitat</td>
+            <td>${page.habitat || "-"}</td>
+        </tr>
+
+        <tr>
+            <td>Alimento</td>
+            <td>${page.food || "-"}</td>
+        </tr>
+
+        <tr>
+            <td>Datos Curiosos</td>
+            <td>${page.data || "-"}</td>
+        </tr>
+
+    </table>
+
+`;
+
+}
+}
+
+function nextPage(){
+
+    if(currentPage < bestiary.length - 1){
+
+        currentPage++;
+
+        renderPage();
+    }
+}
+
+function previousPage(){
+
+    if(currentPage > 0){
+
+        currentPage--;
+
+        renderPage();
+    }
+}
+
+function renderHearts(level){
+
+    let hearts = "";
+
+    for(let i = 1; i <= 5; i++){
+
+        hearts += i <= level
+            ? '<span class="heart-full">♥</span>'
+            : '<span class="heart-empty">♡</span>';
+    }
+
+    return hearts;
+}
+
+renderPage();
+
+</script>
+
+</body>
+</html>
