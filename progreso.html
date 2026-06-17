@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Progresiones</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    font-family:'Cinzel', serif;
+
+    background:
+        radial-gradient(circle at top,
+        #2a0a4d 0%,
+        #140021 45%,
+        #050008 100%);
+
+    color:#e7d1a2;
+
+    padding:40px;
+}
+
+.container{
+
+    max-width:1100px;
+
+    margin:auto;
+}
+
+header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+}
+
+header h1{
+
+    font-size:4rem;
+
+    color:#f2d7a0;
+}
+
+.section-card{
+
+    width:85%;
+
+    max-width:800px;
+
+    margin:auto;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(220,170,90,.35);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(33,7,58,.92),
+            rgba(8,0,22,.96)
+        );
+
+    box-shadow:
+        0 0 25px rgba(0,0,0,.35);
+}
+
+.section-image{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:25px;
+}
+
+.section-image img{
+
+    width:220px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:2px solid rgba(255,215,120,.35);
+}
+
+.section-title{
+
+    text-align:center;
+
+    font-size:3rem;
+
+    margin-bottom:10px;
+}
+
+.section-description{
+
+    text-align:center;
+
+    opacity:.8;
+
+    font-style:italic;
+
+    margin-bottom:25px;
+}
+
+.progress-text{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+}
+
+.progress-bar{
+
+    height:18px;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    background:#140021;
+
+    border:1px solid rgba(255,215,120,.15);
+
+    margin-bottom:35px;
+}
+
+.progress-fill{
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c8a24f,
+            #ffe08a
+        );
+}
+
+.requirement-link{
+
+    color:#e7d1a2;
+
+    text-decoration:none;
+
+    transition:.2s;
+}
+
+.requirement-link:hover{
+
+    color:#ffe08a;
+
+    text-decoration:underline;
+}
+
+.grade{
+
+    margin-bottom:30px;
+}
+
+.grade-title{
+
+    font-size:1.8rem;
+
+    margin-bottom:12px;
+
+    color:#f2d7a0;
+
+    border-bottom:1px solid rgba(255,215,120,.15);
+
+    padding-bottom:8px;
+}
+
+.task{
+
+    display:flex;
+
+    gap:12px;
+
+    align-items:center;
+
+    padding:14px;
+
+    margin-bottom:8px;
+
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,215,120,.12);
+}
+
+.done{
+
+    border-color:
+        rgba(255,215,120,.35);
+}
+
+.icon{
+
+    font-size:1.2rem;
+}
+
+.pagination{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:14px;
+
+    margin-top:30px;
+}
+
+.pagination button{
+
+    padding:10px 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(35,10,60,.95),
+            rgba(12,0,25,.95)
+        );
+
+    border:1px solid rgba(255,215,120,.25);
+
+    color:#e7d1a2;
+
+    font-family:'Cinzel', serif;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.page-indicator{
+
+    text-align:center;
+
+    margin-top:12px;
+
+    opacity:.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <h1>Progresiones</h1>
+</header>
+
+<div class="section-card">
+
+    <div id="content"></div>
+
+</div>
+
+<div class="pagination">
+
+    <button onclick="prevSection()">
+        ← Anterior
+    </button>
+
+    <button onclick="nextSection()">
+        Siguiente →
+    </button>
+
+</div>
+
+<div id="pageIndicator" class="page-indicator"></div>
+
+</div>
+
+<script>
+
+const sections = [
+
+{
+    title:"Semi-Duende",
+
+    image:"https://i.imgur.com/8uEkNAk.png",
+
+    description:"Cmbina la naturaleza humana con la astucia, precisión y particular afinidad de los duendes hacia los objetos y la magia aplicada.",
+
+
+
+    grades:[
+
+        {
+            title:"Grado I",
+
+            requirements:[
+
+                {
+                    text:"Requiere 20 días en el grado 0.",
+                    done:true
+                },
+
+                {
+                    text:"Escribir una historia referente al desarrollo personal como semi-duende.",
+                    done:true,
+		    url:"https://hpc.forumcommunity.net/?t=63458878&p=472182382"
+                },
+
+		{
+		    text:"Utilizar 5 veces habilidades con Antisomancia en un mismo combate.",
+		    done:true,
+		    url:"https://hpc.forumcommunity.net/?t=63452300&p=472186637"
+		},
+
+                {
+                    text:"Ganancia de Galeones en un mismo curso escolar",
+                    done:true
+                }
+            ]
+        },
+
+        {
+            title:"Grado II",
+
+            requirements:[
+
+                {
+                    text:"Requiere 30 días en el grado I [01/07]",
+                    done:false
+                },
+
+		{
+		    text:"Interponerse satisfactoriamente a una habilidad mediante el comando interponer.",
+		    done:true,
+		    url:"https://hpc.forumcommunity.net/?t=63452300&p=472359549"
+		},
+
+		{
+		    text:"Utilizar 5 veces habilidades con Antisomancia en un mismo combate.",
+		    done:true,
+		    url:"https://hpc.forumcommunity.net/?t=63452300&p=472262845"
+		},
+
+		{
+		    text:"Ganar un combate mediante una habilidad con Duendigonza.",
+		    done:true,
+		    url:"https://hpc.forumcommunity.net/?t=63452300&p=472281734"
+		},
+
+                {
+                    text:"Ganancia de Galeones en un mismo curso escolar",
+                    done:true
+                }
+
+            ]
+        },
+
+        {
+            title:"Grado III",
+
+            requirements:[
+
+                {
+                    text:"Requiere 30 días en el grado II [01/08]",
+                    done:false
+                },
+
+                {
+                    text:"???",
+                    done:false
+                },
+
+                {
+                    text:"???",
+                    done:false
+                },
+
+                {
+                    text:"???",
+                    done:false
+                },
+
+                {
+                    text:"???",
+                    done:false
+                },
+
+                {
+                    text:"???",
+                    done:false
+                },
+
+                {
+                    text:"???",
+                    done:false
+                },
+
+            ]
+        }
+
+    ]
+},
+
+{
+    title:"???",
+
+    image:"https://i.imgur.com/8uEkNAk.png",
+
+    description:"Aún por descubrir.",
+
+    grades:[]
+}
+
+];
+
+let currentSection = 0;
+
+function renderSection(){
+
+    const section = sections[currentSection];
+
+    let total = 0;
+    let completed = 0;
+
+    section.grades.forEach(grade => {
+
+        total += grade.requirements.length;
+
+        completed += grade.requirements.filter(
+            r => r.done
+        ).length;
+
+    });
+
+    const percent =
+        total > 0
+        ? Math.round(completed / total * 100)
+        : 0;
+
+    let gradesHTML = "";
+
+    section.grades.forEach(grade => {
+
+        let reqsHTML = "";
+
+        grade.requirements.forEach(req => {
+
+            reqsHTML += `
+
+            <div class="task ${req.done ? 'done' : ''}">
+
+                <span class="icon">
+                    ${req.done ? '☑' : '☐'}
+                </span>
+
+                ${
+    req.url
+    ?
+    `<a
+        href="${req.url}"
+        target="_blank"
+        class="requirement-link"
+    >
+        ${req.text}
+    </a>`
+    :
+    `<span>${req.text}</span>`
+}
+
+            </div>
+
+            `;
+        });
+
+        gradesHTML += `
+
+        <div class="grade">
+
+            <div class="grade-title">
+                ${grade.title}
+            </div>
+
+            ${reqsHTML}
+
+        </div>
+
+        `;
+    });
+
+    document.getElementById("content").innerHTML = `
+
+        <div class="section-image">
+
+            <img
+                src="${section.image}"
+                alt="${section.title}"
+            >
+
+        </div>
+
+        <div class="section-title">
+            ${section.title}
+        </div>
+
+        <div class="section-description">
+            ${section.description}
+        </div>
+
+        <div class="progress-text">
+
+            <span>Progreso</span>
+
+            <span>${completed}/${total}</span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                style="width:${percent}%"
+            ></div>
+
+        </div>
+
+        ${gradesHTML}
+
+    `;
+
+    document.getElementById("pageIndicator").textContent =
+        `Página ${currentSection + 1} de ${sections.length}`;
+}
+
+function nextSection(){
+
+    if(currentSection < sections.length - 1){
+
+        currentSection++;
+
+        renderSection();
+    }
+}
+
+function prevSection(){
+
+    if(currentSection > 0){
+
+        currentSection--;
+
+        renderSection();
+    }
+}
+
+renderSection();
+
+</script>
+
+</body>
+</html>
